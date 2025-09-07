@@ -20,12 +20,12 @@ This website allows organizations to easily store, organize and manage internal 
 
 ## Set up & Installation
 1. **Clone the repository**: 
-```git clone https://github.com/richiedlrsa/internal-guides
+```
+git clone https://github.com/richiedlrsa/internal-guides
 cd internal-guides
 ```
-
 2. Create and activate virtual environment (Recommended):
-```
+
 # For macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
