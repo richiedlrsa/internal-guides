@@ -4,11 +4,12 @@ from . import db
 from sqlalchemy import or_
 from .forms import GuideForm
 import markdown
-from flask_login import login_required, logout_user, current_user
+from flask_login import login_required, logout_user
+from .decorators import is_admin
 views = Blueprint('views', __name__)
 
 @views.route('/', methods = ['GET', 'POST'])
-@login_required
+@login_required 
 def home():
     
     search_query = ''
@@ -27,13 +28,10 @@ def home():
     return render_template('index.html', guides = guides, search_query = search_query)
 
 @views.route('/add', methods = ['GET', 'POST'])
+@is_admin
 @login_required
 def add():
-    if current_user.role != 'admin':
-        flash('You do not permission to access this page.', category = 'warning')
-        
-        return redirect(url_for('views.home'))
-    
+
     form = GuideForm()
     
     if form.validate_on_submit():
@@ -48,13 +46,10 @@ def add():
     return render_template('add.html', form = form)
 
 @views.route('/edit/<int:id>', methods = ['GET', 'POST'])
+@is_admin
 @login_required
 def edit(id):
-    if current_user.role != 'admin':
-        flash('You do not permission to access this page.', category = 'warning')
-        
-        return redirect(url_for('views.home'))
-    
+
     guide = Guide.query.get(id)
     form = GuideForm(obj=guide)
     
@@ -73,13 +68,10 @@ def edit(id):
 
 
 @views.route('/delete/<int:id>', methods = ['POST'])
+@is_admin
 @login_required
 def delete(id):
-    if current_user.role != 'admin':
-        flash('You do not permission to access this page.', category = 'warning')
-        
-        return redirect(url_for('views.home'))
-    
+
     guide = Guide.query.get(id)
     
     db.session.delete(guide)
@@ -106,13 +98,10 @@ def logout():
     return redirect(url_for('auth.login'))
 
 @views.route('/users', methods = ['GET', 'POST'])
+@is_admin
 @login_required
 def users():
-    if current_user.role != 'admin':
-        flash('You do not permission to access this page.', category = 'warning')
-        
-        return redirect(url_for('views.home'))
-        
+
     search_query = ''
     
     if request.method == 'POST':
@@ -129,12 +118,9 @@ def users():
     return render_template('users.html', users = users, search_query = search_query)
 
 @views.route('/view_user/<int:id>', methods = ['GET', 'POST'])
+@is_admin
 @login_required
 def view_user(id):
-    if current_user.role != 'admin':
-        flash('You do not permission to access this page.', category = 'warning')
-        
-        return redirect(url_for('views.home'))
     
     user = User.query.get(id)
     
