@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container">
+    <main>
+        <header>
+            <h1>Login</h1>
+        </header>
+        <form class="edit-form" method="post" action="" novalidate>
+            {{ form.hidden_tag() }}
+                <div class="col-12 mb-3">
+                    {% if form.email.errors %}
+                        {{ form.email(class_="form-control is-invalid", placeholder="Email", aria_label="Email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class_="form-control", placeholder="Email", aria_label="Email") }}
+                    {% endif %}
+                </div>
+                <div class="col-12 mb-3">
+                    {% if form.password.errors %}
+                        {{ form.password(class_="form-control is-invalid", placeholder="Password", aria_label="Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class_="form-control", placeholder="Password", aria_label="Password") }}
+                    {% endif %}
+                </div>
+            <div class="form-action">
+                {{ form.submit(class_="btn btn-outline-primary") }}
+            </div>
+        </form>
+    </main>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container">
+    <main>
+        <header>
+            <h1>Create an account</h1>
+        </header>
+        <form class="edit-form" method="post" action="" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="row g-3">
+                <div class="col">
+                    {% if form.first_name.errors %}
+                        {{ form.first_name(class_="form-control is-invalid", placeholder="First Name", aria_label="First Name") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.first_name(class_="form-control", placeholder="First Name", aria_label="First Name") }}
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if form.last_name.errors %}
+                        {{ form.last_name(class_="form-control is-invalid", placeholder="Last Name", aria_label="Last Name") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.last_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.last_name(class_="form-control", placeholder="Last Name", aria_label="Last Name") }}
+                    {% endif %}
+                </div>
+                <div class="col-12">
+                    {% if form.email.errors %}
+                        {{ form.email(class_="form-control is-invalid", placeholder="Email", aria_label="Email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class_="form-control", placeholder="Email", aria_label="Email") }}
+                    {% endif %}
+                </div>
+                <div class="col-12">
+                    {% if form.password.errors %}
+                        {{ form.password(class_="form-control is-invalid", placeholder="Password", aria_label="Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class_="form-control", placeholder="Password", aria_label="Password") }}
+                    {% endif %}
+                </div>
+            <div>
+            <div class="form-action">
+                {{ form.submit(class_="btn btn-outline-primary") }}
+            </div>
+        </form>
+    </main>
+</div>
+
+{% endblock %}

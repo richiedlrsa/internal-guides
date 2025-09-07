@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <header>
+        <h1>Internal Guides and Workflows</h1>
+        {% if current_user.role == 'admin' %}
+            <a href="/add" class="btn btn-outline-primary">➕ Add New Guide</a>
+        {% endif %}
+    </header>
+
+    <main>
+        <div class="search-bar">
+            <form method="post" action ="">
+                <input type="text" name="search" placeholder="Search guides..." value="{{ search_query if search_query else '' }}">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="" class="btn btn-secondary">Clear</a>
+            </form>
+        </div>
+
+        <div class="guide-list">
+            {% if guides %}
+                {% for guide in guides %}
+                    <div class="guide-item">
+                        <div class="guide-item-content">
+                            <h2><a href="{{ url_for('views.view_guides', id=guide.id) }}">{{ guide.title }}</a></h2>
+                            <p class="timestamp">Created: {{ guide.created_at }}</p>
+                        </div>
+                        <div class="guide-item-actions">
+                            {% if current_user.role == 'admin' %}
+                                <a href="{{ url_for('views.edit', id=guide.id) }}" class="btn btn-primary">Edit</a>
+                                <form action="{{ url_for('views.delete', id=guide.id) }}" method="post" onsubmit="return confirm('Are you sure you would like to delete this guide?');">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            {% else %}
+                                <a href="{{ url_for('views.view_guides', id=guide.id) }}" class="btn btn-primary">View</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No guides found. <a href="{{ url_for('views.add') }}">Why not add one?</a></p>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+body {
+    background-color: #f4f7f6;
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.search-bar form { 
+    display: flex; 
+    gap: 0.5rem; 
+    margin-bottom: 2rem; 
+}
+
+.search-bar input[type="text"] { 
+    flex-grow: 1; 
+    padding: 0.6rem; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+.edit-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 0.5rem;
+} 
+
+.guide-list .guide-item, .user-list .user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.guide-item-actions, .user-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.guide-item h2, .user h2 { 
+    margin: 0; 
+    font-size: 1.25rem; 
+}
+
+.guide-item h2 a, .user h2 a { 
+    text-decoration: none; 
+    color: var(--primary-color); 
+}
+
+.guide-item h2 a:hover, .user h2 a:hover { 
+    text-decoration: underline; 
+}
+
+.guide-item .timestamp, .user .user-data .timestamp { 
+    font-size: 0.85rem; 
+    color: #6c757d; 
+    margin: 0.25rem 0 0; 
+}
+
+.inline-text {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
