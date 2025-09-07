@@ -1,5 +1,5 @@
 # Internal Guides and SOPs
-    A web application to organize and manage internal policies and procedures.
+A web application to organize and manage internal policies and procedures.
 
 ## Description
 
