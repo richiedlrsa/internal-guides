@@ -26,11 +26,11 @@ cd internal-guides
 ```
 2. Create and activate virtual environment (Recommended):
 
-# For macOS/Linux
+### For macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
 
-# For Windows
+### For Windows
 python -m venv venv
 .\venv\Scripts\active
 
